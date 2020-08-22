@@ -261,8 +261,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      * Connect to a TCP server
      */
     public void connectToSever(View view) {
-        Thread start_client = new Thread(new StartClient());
-        start_client.start();
+
     }
 
     @Override
@@ -320,14 +319,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             eventData[0] = results[0];
             eventData[1] = results[1];
             eventData[2] = results[2];
-
+            Thread start_client = new Thread(new StartClient());
+            start_client.start();
             if (connected) {
                 cb.setText("Connected!");
                 Thread send_data = new Thread(new SendData());
                 send_data.start();
             }
             else {
-                cb.setText("Connect");
+                cb.setText("X Connect");
             }
             setProbabilities();
             setRowsColor(idx);
